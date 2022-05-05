@@ -22,14 +22,14 @@ const CourseInput = (props) => {
     if (enteredValue.trim().length === 0) {
       setIsValid(false);
       return;
-    } else props.onAddGoal(enteredValue);
+    }
+    props.onAddGoal(enteredValue);
   };
 
   return (
     <form onSubmit={formSubmitHandler}>
       {/* Adding dynamic styling through styled components - depending on user input and isValid state */}
       <div
-        /*  !isValid coloring not working as intended */
         className={`${styles["form-control"]} ${!isValid && styles.invalid}`}
       >
         <label>Course Goal</label>
