@@ -1,9 +1,16 @@
-import styled from "styled-components"; // https://styled-components.com/
+import React from "react";
+
+// The way to import if you are using CSS modules to set scope styling for the component where we use them
+// The classes from css are used as properties (e.g line 41)
+import styles from "./Button.module.css";
+
+// ANOTHER WAY OF STYLING:
+/* import styled from "styled-components"; // https://styled-components.com/ */
 
 // Styled Component approach - button is a method to the styled object
 // It will return a new button component with the styling set in between the back ticks
 
-const Button = styled.button`
+/* const Button = styled.button`
   width: 100%;
   font: inherit;
   padding: 0.5rem 1.5rem;
@@ -28,13 +35,14 @@ const Button = styled.button`
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.26);
   }
 `;
+ */
 
-/* const Button = props => {
+const Button = (props) => {
   return (
-    <button type={props.type} className="button" onClick={props.onClick}>
+    <button type={props.type} className={styles.button} onClick={props.onClick}>
       {props.children}
     </button>
   );
-}; */
+};
 
 export default Button;
