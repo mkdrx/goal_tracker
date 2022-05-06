@@ -1,32 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import CourseGoalList from './components/CourseGoals/CourseGoalList/CourseGoalList';
-import CourseInput from './components/CourseGoals/CourseInput/CourseInput';
-import './App.css';
+import CourseGoalList from "./components/CourseGoals/CourseGoalList/CourseGoalList";
+import CourseInput from "./components/CourseGoals/CourseInput/CourseInput";
+import "./App.css";
 
 const App = () => {
+  // State definition for adding goals
+
   const [courseGoals, setCourseGoals] = useState([
-    { text: 'Do all exercises!', id: 'g1' },
-    { text: 'Finish the course!', id: 'g2' }
+    // Dummy examples to show when starting the App
+    { text: "Do all exercises!", id: "g1" },
+    { text: "Finish the course!", id: "g2" },
   ]);
 
-  const addGoalHandler = enteredText => {
-    setCourseGoals(prevGoals => {
+  // Add-goal handler
+
+  const addGoalHandler = (enteredText) => {
+    setCourseGoals((prevGoals) => {
       const updatedGoals = [...prevGoals];
       updatedGoals.unshift({ text: enteredText, id: Math.random().toString() });
       return updatedGoals;
     });
   };
 
-  const deleteItemHandler = goalId => {
-    setCourseGoals(prevGoals => {
-      const updatedGoals = prevGoals.filter(goal => goal.id !== goalId);
+  // Delete-goal handler
+
+  const deleteItemHandler = (goalId) => {
+    setCourseGoals((prevGoals) => {
+      const updatedGoals = prevGoals.filter((goal) => goal.id !== goalId);
       return updatedGoals;
     });
   };
 
+  // Content made equal to that <p> message but if content > 0, it makes content variable => the component CourseGoalList
+
   let content = (
-    <p style={{ textAlign: 'center' }}>No goals found. Maybe add one?</p>
+    <p style={{ textAlign: "center" }}>No goals found. Maybe add one?</p>
   );
 
   if (courseGoals.length > 0) {
@@ -38,18 +47,10 @@ const App = () => {
   return (
     <div>
       <section id="goal-form">
+        {/*Connects with child Component CourseInput*/}
         <CourseInput onAddGoal={addGoalHandler} />
       </section>
-      <section id="goals">
-        {content}
-        {/* {courseGoals.length > 0 && (
-          <CourseGoalList
-            items={courseGoals}
-            onDeleteItem={deleteItemHandler}
-          />
-        ) // <p style={{ textAlign: 'center' }}>No goals found. Maybe add one?</p>
-        } */}
-      </section>
+      <section id="goals">{content}</section>
     </div>
   );
 };

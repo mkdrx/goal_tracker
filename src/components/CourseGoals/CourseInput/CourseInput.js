@@ -4,6 +4,8 @@ import Button from "../../UI/Button/Button";
 import styles from "./CourseInput.module.css";
 
 const CourseInput = (props) => {
+  // States for entering values and checking validations
+
   const [enteredValue, setEnteredValue] = useState("");
   const [isValid, setIsValid] = useState(true);
 
@@ -12,6 +14,7 @@ const CourseInput = (props) => {
     if (event.target.value.trim().length > 0) {
       setIsValid(true);
     }
+    // Changes the state to whatever the user did input (event.target.value)
     setEnteredValue(event.target.value);
   };
 
@@ -23,12 +26,13 @@ const CourseInput = (props) => {
       setIsValid(false);
       return;
     }
+    // Sends the enteredValue upwards to App
     props.onAddGoal(enteredValue);
   };
 
   return (
     <form onSubmit={formSubmitHandler}>
-      {/* Adding dynamic styling through styled components - depending on user input and isValid state */}
+      {/* Adding dynamic styling through CSS modules - depending on user input and isValid state */}
       <div
         className={`${styles["form-control"]} ${!isValid && styles.invalid}`}
       >
